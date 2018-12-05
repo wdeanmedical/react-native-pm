@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "react-native-pm",
-    "description": "This project is really great.",
+    "description": "CareFirst Practice Manager",
     "slug": "react-native-pm",
     "privacy": "public",
     "sdkVersion": "31.0.0",
