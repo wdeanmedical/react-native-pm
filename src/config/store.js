@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware } from 'redux'
 import ReduxThunk from 'redux-thunk'
 import reducers from '../reducers'
+import { APP_INIT } from '../actions/action_types'
 
 const middleware = [ReduxThunk]
 
