@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import ReduxThunk from 'redux-thunk'
-import reducers from '../reducers'
+import reducer from '../reducers'
 import { APP_INIT } from '../actions/action_types'
 
 const middleware = [ReduxThunk]
@@ -15,6 +16,9 @@ if (process.env.NODE_ENV === 'development') {
   middleware.push(logger)
 }
 
-const store = createStore(reducers, {}, applyMiddleware(...middleware))
+const store = createStore(
+  reducer,
+  composeWithDevTools(applyMiddleware(...middleware))
+)
 
 export default store
