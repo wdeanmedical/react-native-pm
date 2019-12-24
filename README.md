@@ -1,4 +1,4 @@
-# WDean Medical CareFirst Practice Manager - Mobile
+## React Native Care First Practice Manager
 
 ### Getting Started
 
