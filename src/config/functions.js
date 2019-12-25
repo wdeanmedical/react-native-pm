@@ -1,7 +1,5 @@
-export default {
-  handleFieldChange: (field, e) => {
-    const { fields } = this.state
-    fields[field] = e.target.value
-    this.setState({ fields })
-  },
+export const handleFieldChange = (field, value, currentForm) => {
+  const { fields } = currentForm.state
+  fields[field] = value
+  currentForm.setState({ fields })
 }

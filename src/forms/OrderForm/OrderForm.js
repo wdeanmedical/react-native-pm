@@ -4,9 +4,7 @@ import PropTypes from 'prop-types'
 import Images from '@local/assets'
 import { View } from 'react-native'
 import Overlay from 'react-native-modal-overlay'
-import { sendOrder } from '../../state/actions'
-import * as Constants from '../../constants/constants'
-import form from '../../config/fields'
+import { sendOrder, getForm } from '../../state/actions'
 import OrderFormStyled from './order_form_styles'
 
 class OrderForm extends Component {
@@ -19,7 +17,10 @@ class OrderForm extends Component {
     overlay: false,
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    const { getForm: dispatchGetForm } = this.props
+    dispatchGetForm()
+  }
 
   validateForm = () => {
     this.setState({
@@ -70,12 +71,6 @@ class OrderForm extends Component {
     }
   }
 
-  handleFieldChange = (field, value) => {
-    const { fields } = this.state
-    fields[field] = value
-    this.setState({ fields })
-  }
-
   formMapper(field) {
     const { FormComponent } = field
     const { fields, errors, submitted } = this.state
@@ -83,16 +78,16 @@ class OrderForm extends Component {
       <FormComponent
         field={field}
         submitted={submitted}
-        handleFieldChange={this.handleFieldChange}
         key={field.id}
         value={fields[field.name]}
         errorMessage={errors[field.name]}
+        currentForm={this}
       />
     )
   }
 
   render() {
-    const { response } = this.props
+    const { response, form } = this.props
     const { title, message, submitted, fields, errors, overlay } = this.state
     return (
       <OrderFormStyled>
@@ -100,7 +95,7 @@ class OrderForm extends Component {
           <OrderFormStyled.title>{title}</OrderFormStyled.title>
           <OrderFormStyled.subtitle>{message}</OrderFormStyled.subtitle>
 
-          {form.map(this.formMapper, this)}
+          {form && form.map(this.formMapper, this)}
 
           {submitted === false && (
             <OrderFormStyled.button
@@ -109,32 +104,6 @@ class OrderForm extends Component {
             >
               <OrderFormStyled.buttonText>Submit</OrderFormStyled.buttonText>
             </OrderFormStyled.button>
-          )}
-
-          {submitted && (
-            <OrderFormStyled.response>
-              <OrderFormStyled.responseTitle>
-                candy store rep response:
-              </OrderFormStyled.responseTitle>
-              <OrderFormStyled.responseIcons>
-                <OrderFormStyled.responseIcon
-                  source={
-                    response === Constants.REJECT
-                      ? Images.thumbsDownSubmitted
-                      : Images.thumbsDown
-                  }
-                  accessibilityLabel="Reject"
-                />
-                <OrderFormStyled.responseIcon
-                  source={
-                    response === Constants.ACCEPT
-                      ? Images.thumbsUpSubmitted
-                      : Images.thumbsUp
-                  }
-                  accessibilityLabel="Accept"
-                />
-              </OrderFormStyled.responseIcons>
-            </OrderFormStyled.response>
           )}
 
           <Overlay
@@ -160,11 +129,13 @@ class OrderForm extends Component {
 
 const mapStateToProps = state => {
   const { response } = state.app
-  return response || {}
+  const { form } = state.form
+  return { response, form }
 }
 
 const mapDispatchToProps = dispatch => ({
   sendOrder: order => dispatch(sendOrder(order)),
+  getForm: () => dispatch(getForm()),
 })
 
 OrderForm.propTypes = {
