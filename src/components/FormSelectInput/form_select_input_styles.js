@@ -42,6 +42,8 @@ SelectInputStyled.select = styled.Picker`
   }
 `
 
+SelectInputStyled.option = styled.Text``
+
 SelectInputStyled.errorMsg = styled.Text`
   font-family: Arial;
   text-align: right;

@@ -1,5 +1,4 @@
 import React from 'react'
-import { Picker } from 'react-native'
 import PropTypes from 'prop-types'
 import FieldShape from '../../state/shapes/FieldShape'
 import SelectInputStyled from './form_select_input_styles'
@@ -17,9 +16,9 @@ const FormSelectInput = props => {
         selectedValue={value}
         onValueChange={e => handleFieldChange(field.name, e, currentForm)}
       >
-        <Picker.Item value="" label={field.placeholder} />
+        <SelectInputStyled.option value="" label={field.placeholder} />
         {field.options.map(option => (
-          <Picker.Item
+          <SelectInputStyled.option
             key={option.id}
             value={option.value}
             label={option.label}
