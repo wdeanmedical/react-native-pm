@@ -9,22 +9,24 @@ const FormSelectInput = props => {
   return (
     <SelectInputStyled>
       <SelectInputStyled.itemLabel>{field.label}</SelectInputStyled.itemLabel>
-      <SelectInputStyled.select
-        {...props}
-        disabled={submitted === true}
-        options={field.options}
-        selectedValue={value}
-        onValueChange={e => handleFieldChange(field.name, e, currentForm)}
-      >
-        <SelectInputStyled.option value="" label={field.placeholder} />
-        {field.options.map(option => (
-          <SelectInputStyled.option
-            key={option.id}
-            value={option.value}
-            label={option.label}
-          />
-        ))}
-      </SelectInputStyled.select>
+      <SelectInputStyled.selectWrapper>
+        <SelectInputStyled.select
+          {...props}
+          disabled={submitted === true}
+          options={field.options}
+          selectedValue={value}
+          onValueChange={e => handleFieldChange(field.name, e, currentForm)}
+        >
+          <SelectInputStyled.option value="" label={field.placeholder} />
+          {field.options.map(option => (
+            <SelectInputStyled.option
+              key={option.id}
+              value={option.value}
+              label={option.label}
+            />
+          ))}
+        </SelectInputStyled.select>
+      </SelectInputStyled.selectWrapper>
       <SelectInputStyled.errorMsg>{errorMessage}</SelectInputStyled.errorMsg>
     </SelectInputStyled>
   )

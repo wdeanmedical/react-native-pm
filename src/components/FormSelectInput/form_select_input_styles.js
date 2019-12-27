@@ -20,6 +20,35 @@ SelectInputStyled.select = styled.Picker`
   width: 100%;
   font-size: 14px;
   color: ${Colors.black};
+  height: 34px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  border-color: ${Colors.textInputBorderColor};
+  &:hover {
+    border: 1px solid ${Colors.azure};
+  }
+  &:focus {
+    border: 1px solid ${Colors.azure};
+  }
+  &:disabled {
+    border: ${Colors.textInputBorderColor};
+    background: ${Colors.textInputDisabledBackground};
+    color: ${Colors.battleshipGrey};
+  }
+  &:placeholder {
+    color: ${Colors.inputPlaceholderColor};
+    font-size: 14px;
+  }
+`
+
+SelectInputStyled.selectWrapper = styled.View`
+  background-color: ${props =>
+    props.submitted ? Colors.lightGray : Colors.white};
+  border-width: 1px;
+  width: 100%;
+  font-size: 14px;
+  color: ${Colors.black};
   height: 38px;
   padding-left: 10px;
   padding-right: 10px;
@@ -42,7 +71,9 @@ SelectInputStyled.select = styled.Picker`
   }
 `
 
-SelectInputStyled.option = styled.Text``
+SelectInputStyled.option = styled.Text`
+  font-size: 12px;
+`
 
 SelectInputStyled.errorMsg = styled.Text`
   font-family: Arial;
