@@ -16,6 +16,7 @@ export const getForm = function*() {
     const result = yield call(API.getForm)
     yield put(getFormSuccess(result))
   } catch (error) {
+    console.log('error', error)
     yield put(getFormFail(error))
   }
 }

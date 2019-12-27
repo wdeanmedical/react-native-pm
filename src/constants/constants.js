@@ -20,4 +20,6 @@ export const ANDROID = 'android'
 export const ACCEPT = 'accept'
 export const REJECT = 'reject'
 
-export const API_URL = 'http://localhost:3000/api'
+export const API_URL = 'http://10.0.2.2:3000/api'
+// export const API_URL = 'http://192.168.0.11:3000/api'
+// export const API_URL = 'http://localhost:3000/api'

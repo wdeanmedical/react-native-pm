@@ -18,11 +18,13 @@ class OrderForm extends Component {
   }
 
   componentDidMount() {
+    console.log('Inside componentDidMount()')
     const { getForm: dispatchGetForm } = this.props
     dispatchGetForm()
   }
 
   validateForm = () => {
+    console.log('Inside validate form()')
     this.setState({
       errors: {},
     })
