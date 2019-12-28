@@ -6,7 +6,7 @@ const TextInputStyled = styled.View``
 TextInputStyled.itemLabel = styled.Text`
   font-family: Arial;
   font-size: 14px;
-  color: ${Colors.black};
+  color: ${Colors.battleshipGrey};
   margin-left: 4px;
   margin-bottom: 2px;
 `

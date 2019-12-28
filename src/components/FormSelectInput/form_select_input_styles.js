@@ -1,4 +1,8 @@
-import styled from 'styled-components/native/dist/styled-components.native.esm'
+import { Platform } from 'react-native'
+import RNPickerSelect from 'react-native-picker-select'
+import styled, {
+  css,
+} from 'styled-components/native/dist/styled-components.native.esm'
 import { Colors } from '../../constants/colors'
 
 const SelectInputStyled = styled.View`
@@ -8,25 +12,20 @@ const SelectInputStyled = styled.View`
 
 SelectInputStyled.itemLabel = styled.Text`
   font-family: Arial;
-  font-size: 13px;
+  font-size: 14px;
   color: ${Colors.battleshipGrey};
-  margin-left: 8px;
+  margin-left: 4px;
+  margin-bottom: 2px;
 `
 
-SelectInputStyled.select = styled.Picker`
+SelectInputStyled.select = styled(RNPickerSelect)`
   background-color: ${props =>
     props.submitted ? Colors.lightGray : Colors.white};
   border-width: 0;
   width: 100%;
   font-size: 14px;
   color: ${Colors.black};
-  height: 34px;
-  padding-left: 10px;
-  padding-right: 10px;
-  &:placeholder {
-    color: ${Colors.inputPlaceholderColor};
-    font-size: 14px;
-  }
+  height: 38px;
 `
 
 SelectInputStyled.selectWrapper = styled.View`
@@ -34,28 +33,18 @@ SelectInputStyled.selectWrapper = styled.View`
     props.submitted ? Colors.lightGray : Colors.white};
   border-width: 1px;
   width: 100%;
-  font-size: 14px;
+  padding-right: 10px;
   color: ${Colors.black};
   height: 38px;
-  padding-left: 10px;
-  padding-right: 10px;
   border-radius: 10px;
+  ${Platform.select({
+    ios: css`
+      padding-top: 10px;
+      padding-left: 10px;
+    `,
+    android: css``,
+  })};
   border-color: ${Colors.textInputBorderColor};
-  &:hover {
-    border: 1px solid ${Colors.azure};
-  }
-  &:focus {
-    border: 1px solid ${Colors.azure};
-  }
-  &:disabled {
-    border: ${Colors.textInputBorderColor};
-    background: ${Colors.textInputDisabledBackground};
-    color: ${Colors.battleshipGrey};
-  }
-  &:placeholder {
-    color: ${Colors.inputPlaceholderColor};
-    font-size: 14px;
-  }
 `
 
 SelectInputStyled.option = styled.Text`
